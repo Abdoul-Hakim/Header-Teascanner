@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="firstLineContainer">
+    <div class="firstLine">
+      <img id="menu" src="../../assets/menu.svg" alt="menu">
+      <h1>Teascanner</h1>
+      <div class="rightIcons">
+        <img id="businessMan" src="../../assets/businessman.svg" alt="menu">
+        <img id="shoppingCart" src="../../assets/shopping-cart.svg" alt="menu">
+      </div>
+    </div>
+  </div>
+  <div class="searchfieldcontainer">
+    <input #searchField type="text" [(ngModel)]="teaName" placeholder="sfere del drago">
+    <button id="searchBtn">
+      <img src="../../assets/search1.svg" alt="search">
+    </button>
+  </div>
+  <div class="btnContainer">
+    <button type="button"
+      [class.activeTeaBtn]="isTeaSelected"
+      (click)="selectTea()">
+      <img [class.activePlant]="isTeaSelected" src="../../assets/plant.svg" alt="plant">
+      Tea
+    </button>
+    <button type="button"
+      [class.activeTeaware]="isTeawareSelected"
+      (click)="selectTeaware()">
+      <img [class.activeCruise]="isTeawareSelected" src="../../assets/cruise.svg" alt="boat">
+      Teaware
+    </button>
+  </div>
+</div>
+
+<ng-template [ngIf]="isTeaSelected === true" [ngIfElse]="elseBlock">
+  <div class="listElement" *ngFor="let tea of teaList | filter:teaName">
+    {{ tea.name }}
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+ <div class="listElement">
+   Teaware
+ </div>
+</ng-template>
+
+
